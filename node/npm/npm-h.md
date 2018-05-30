@@ -1,9 +1,36 @@
+## node
+
+```shell
+faner@MBP-FAN:~|⇒  node -v
+v10.1.0
+
+faner@MBP-FAN:~|⇒  which node
+/usr/local/bin/node
+
+faner@MBP-FAN:~|⇒  type -a node
+node is /usr/local/bin/node
+
+faner@MBP-FAN:~|⇒  ls -al `which node`
+lrwxr-xr-x  1 faner  admin  30 May 12 20:32 /usr/local/bin/node -> ../Cellar/node/10.1.0/bin/node
+```
+
 ## npm
 
 ```shell
 faner@MBP-FAN:~|⇒  npm -v
 6.1.0
+
+faner@MBP-FAN:~|⇒  which npm
+/usr/local/bin/npm
+
+faner@MBP-FAN:~|⇒  type -a npm
+npm is /usr/local/bin/npm
+
+faner@MBP-FAN:~|⇒  ls -al `which npm`
+lrwxr-xr-x  1 faner  admin  38 May 24 06:38 /usr/local/bin/npm -> ../lib/node_modules/npm/bin/npm-cli.js
 ```
+
+### npm -h
 
 ```shell
 faner@MBP-FAN:~|⇒  npm -h
@@ -38,20 +65,42 @@ npm@6.1.0 /usr/local/lib/node_modules/npm
 模块：`/usr/local/lib/node_modules/npm`  
 配置：`/Users/faner/.npmrc`  
 
-## cnpm
+## [cnpm](http://npm.taobao.org/)
+
+In China, you can install whistle using npm mirror of taobao to speed up installing progress and avoid failure：
+
+> [tnpm /cnpm 安装报错](https://segmentfault.com/q/1010000009008062)  
+> [nodejs linux 环境设置 tnpm 安装](https://blog.csdn.net/lilei_ndsc/article/details/52190010)  
+
+执行 npm 命令时，指定 `--registry` 参数，从 cnpm 镜像源安装：
 
 ```shell
+# or specify mirror install directly：
+npm install whistle -g --registry=https://registry.npm.taobao.org
+```
+
+或用 npm 安装 cnpm，然后用 cnpm 命令替代 npm：
+
+```shell
+faner@MBP-FAN:~|⇒  npm install cnpm -g --registry=https://registry.npm.taobao.org
+
 faner@MBP-FAN:~|⇒  cnpm -v
-cnpm@5.3.0 (/usr/local/lib/node_modules/cnpm/lib/parse_argv.js)
-npm@5.10.0 (/usr/local/lib/node_modules/cnpm/node_modules/npm/lib/npm.js)
+cnpm@6.0.0 (/usr/local/lib/node_modules/cnpm/lib/parse_argv.js)
+npm@6.1.0 (/usr/local/lib/node_modules/cnpm/node_modules/_npm@6.1.0@npm/lib/npm.js)
 node@10.2.1 (/usr/local/Cellar/node/10.2.1/bin/node)
-npminstall@3.6.2 (/usr/local/lib/node_modules/cnpm/node_modules/npminstall/lib/index.js)
+npminstall@3.6.2 (/usr/local/lib/node_modules/cnpm/node_modules/_npminstall@3.6.2@npminstall/lib/index.js)
 prefix=/usr/local
 darwin x64 17.6.0
 registry=https://registry.npm.taobao.org
+
+cnpm install -g whistle
 ```
 
 模块：`/usr/local/lib/node_modules/cnpm`  
+
+[**npm extraneous error**](http://www.skyjia.com/2017/05/05/npm-error-extraneous/) ：由于 Homebrew 管理的 node 会经常升级更新，并且 cnpm 默认会将 package 安装到当前运行版本的 node 安装文件夹之中，这个默认行为会在 node 再次升级后导致已安装的全局 packag e失效。因此，我们需要手动修改 npm 的 prefix 设置。
+
+### cnpm -h
 
 ```shell
 faner@MBP-FAN:~|⇒  cnpm -h
