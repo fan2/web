@@ -55,17 +55,17 @@ faner@MBP-FAN:~/Projects/git/web/node/npm/npm-config-list|master⚡
 
 `user-agent` 不同，cnpm 基于较老版本的 `npm/5.10.0`。
 
-## registry
+## [registry](https://docs.npmjs.com/misc/registry)
 
 cnpm overridden 了 `registry`；  
 `metrics-registry` 不同，cnpm 基于淘宝的 registry。  
 
-## prefix
+## [prefix](https://docs.npmjs.com/cli/prefix)
 
 cnpm 比 npm 多了 `disturl`。  
 npm overridden 了 `prefix`。  
 
-## config
+## [config](https://docs.npmjs.com/misc/config)
 
 cnpm overridden 了`userconfig`，  
 `globalconfig` 和 `globalignorefile` 不同。  
