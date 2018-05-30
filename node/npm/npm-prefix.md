@@ -88,6 +88,15 @@ faner@MBP-FAN:~|⇒  npm root -g
 /usr/local/lib/node_modules
 ```
 
+- 执行 `npm install` 的当前用户安装路径：`~/node_modules`；  
+- 执行 `npm install -g` 的全局安装路径：`/usr/local/lib/node_modules`；  
+
+具体某个包的依赖包路径：
+
+* `/usr/local/lib/node_modules/npm/node_modules`
+* `/usr/local/lib/node_modules/cnpm/node_modules`
+* `/usr/local/lib/node_modules/whistle/node_modules`
+
 ### cnpm
 
 ```shell
