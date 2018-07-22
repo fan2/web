@@ -152,8 +152,6 @@ registry=https://registry.npm.taobao.org
 faner@MBP-FAN:~|⇒
 ```
 
-
-
 ## [npm-outdated](https://docs.npmjs.com/cli/outdated)
 
 Check for outdated packages
@@ -167,8 +165,10 @@ This command will check the registry to see if any (or, specific) installed pack
 基于淘宝 cnpm 源检测过期：
 
 ```shell
-# cnpm outdated -g
-npm outdated -g --registry=https://registry.npm.taobao.org
+# npm outdated -g --registry=https://registry.npm.taobao.org
+faner@MBP-FAN:~|⇒  cnpm outdated -g
+Package     Current  Wanted  Latest  Location
+typescript    2.8.3   2.9.1   2.9.1
 ```
 
 基于淘宝 cnpm 源检测具体某个 package 是否过期：`cnpm outdated -g whistle`
@@ -198,7 +198,17 @@ If no package name is specified, ***all*** packages in the specified location (g
 npm update -g --registry=https://registry.npm.taobao.org
 ```
 
-基于淘宝 cnpm 源更新具体某个过期的 package：`cnpm outdated -g whistle`
+基于淘宝 cnpm 源更新具体某个过期的 package：`cnpm outdated -g typescript`
+
+```shell
+faner@MBP-FAN:~|⇒  cnpm update -g typescript
+/usr/local/bin/tsc -> /usr/local/lib/node_modules/typescript/bin/tsc
+/usr/local/bin/tsserver -> /usr/local/lib/node_modules/typescript/bin/tsserver
++ typescript@2.9.1
+updated 1 package in 2.984s
+```
+
+当然，也可以执行原始安装命令重新覆盖安装，相当于自然升级了：**`cnpm i -g whistle`**。
 
 ## [npm-uninstall](https://docs.npmjs.com/cli/uninstall)
 
