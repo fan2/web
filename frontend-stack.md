@@ -40,14 +40,13 @@ The vast majority of websites use it, and all major web browsers have a dedicate
 
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript)   - Wikipedia  
 
-[JavaScript Tutorial](https://www.w3schools.com/js/default.asp) - w3schools  
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - MDN  
+[**JavaScript Tutorial**](https://www.w3schools.com/js/default.asp) - w3schools  
+[**JavaScript 标准参考教程**](http://javascript.ruanyifeng.com/) - 阮一峰  
 
 [learn javascript](https://www.codeschool.com/learn/javascript) - code school  
 [Introduction To JavaScript](https://www.codecademy.com/learn/introduction-to-javascript)  [Learn the fundamentals of JavaScript](https://www.codecademy.com/en/tracks/javascript) - codecademy  
 [The Modern JavaScript Tutorial](https://javascript.info/)  
-
-[JavaScript 标准参考教程](http://javascript.ruanyifeng.com/) - 阮一峰  
 
 ### [jQuery](http://jquery.com/)
 
@@ -86,6 +85,7 @@ It is the default package manager for the JavaScript runtime environment Node.js
 [npm/npm: a package manager for javascript](https://github.com/npm/npm) @GitHub  
 
 [Node.js NPM](https://www.w3schools.com/nodejs/nodejs_npm.asp) - W3Schools  
+[Node.js API Documentation](https://nodejs.org/api/)  
 
 ## [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
 
