@@ -40,9 +40,10 @@ The vast majority of websites use it, and all major web browsers have a dedicate
 
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript)   - Wikipedia  
 
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - MDN  
+[**JavaScript**](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - MDN  
 [**JavaScript Tutorial**](https://www.w3schools.com/js/default.asp) - w3schools  
-[**JavaScript 标准参考教程**](http://javascript.ruanyifeng.com/) - 阮一峰  
+
+[JavaScript 标准参考教程](http://javascript.ruanyifeng.com/) - [**JavaScript 教程**](https://wangdoc.com/javascript/) - 阮一峰  
 
 [learn javascript](https://www.codeschool.com/learn/javascript) - code school  
 [Introduction To JavaScript](https://www.codecademy.com/learn/introduction-to-javascript)  [Learn the fundamentals of JavaScript](https://www.codecademy.com/en/tracks/javascript) - codecademy  
