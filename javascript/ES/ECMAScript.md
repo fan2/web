@@ -57,9 +57,11 @@ vscode 中 jsconfig 配置 JS 版本，相关语法支持和提示不一样。
 [Standard ECMA-262 - 6th Edition / June 2015](https://ecma-international.org/ecma-262/6.0/)  
 ECMAScript® 2015 Language Specification  
 
-[es6 compatibility table](http://kangax.github.io/compat-table/es6/)  
+**Synonyms**: ES2015, and ECMAScript 2015
 
 [ECMAScript 6 Features](http://es6-features.org/)  
+
+[es6 compatibility table](http://kangax.github.io/compat-table/es6/)  
 
 [深入浅出ES6（一）：ES6是什么](http://www.infoq.com/cn/articles/es6-in-depth-an-introduction)  
 
