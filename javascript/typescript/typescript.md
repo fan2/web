@@ -6,6 +6,8 @@ Typescript is a typed *superset* of JavaScript that **compiles** to plain JavaSc
 
 Any browser. Any host. Any OS. Open source.
 
+[TypeScript Playground](http://www.typescriptlang.org/play/index.html)  
+
 ## tutorial
 
 [TypeScript in 5 minutes tutorial](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)  
@@ -17,3 +19,7 @@ Any browser. Any host. Any OS. Open source.
 [TypeScript Vue Starter](https://github.com/Microsoft/TypeScript-Vue-Starter#typescript-vue-starter)  
 [TypeScript-WeChat-Starter](https://github.com/Microsoft/TypeScript-WeChat-Starter)  
 [TypeScript React Conversion Guide](https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide)  
+
+## QA
+
+[What is TypeScript and why would I use it in place of JavaScript?](https://stackoverflow.com/questions/12694530/what-is-typescript-and-why-would-i-use-it-in-place-of-javascript)
