@@ -8,6 +8,8 @@ npm-folders : Folder Structures Used by npm
 - Install it **globally** if you're going to run it on the command line.  
 - If you need both, then install it in both places, or use **npm link**.  
 
+`npm help 5 folders`
+
 ## [prefix Configuration](https://docs.npmjs.com/files/folders#prefix-configuration)
 
 The **prefix** config defaults to the location where node is installed.  

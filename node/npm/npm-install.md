@@ -33,11 +33,64 @@ In global mode (ie, with **`-g`** or **`--global`** appended to the command), it
 
 By default, **npm install** will install all modules listed as dependencies in [package.json](https://docs.npmjs.com/files/package.json).
 
-安装 whistle：`npm install -g whistle`；  
-同时安装 tslint 和 typescript：`cnpm install -g tslint typescript`；  
+用 npm 安装淘宝 [cnpm](https://npm.taobao.org/)：`npm install cnpm -g --registry=https://registry.npm.taobao.org`  
+安装 whistle：`[c]npm install -g whistle`；  
+同时安装 tslint 和 typescript：`[c]npm i -g tslint typescript`；  
+	
+## [npm-outdated](https://docs.npmjs.com/cli/outdated)
 
+Check for outdated packages
 
-### npm i npm -g 升级 npm
+```
+npm outdated [[<@scope>/]<pkg> ...]
+```
+
+This command will check the registry to see if any (or, specific) installed packages are currently outdated.
+
+基于 cnpm 源检测所有过期包：
+
+```shell
+# npm outdated -g --registry=https://registry.npm.taobao.org
+faner@MBP-FAN:~|⇒  cnpm outdated -g
+Package     Current  Wanted  Latest  Location
+npm         6.2.0    6.4.0   6.4.0
+typescript  2.8.3    2.9.1   2.9.1
+whistle     1.12.0   1.12.1  1.12.1
+```
+
+基于 cnpm 源检测某个具体 package 是否过期：`cnpm outdated -g whistle`
+
+## [npm-update](https://docs.npmjs.com/cli/update)
+
+Update a package
+
+```
+npm update [-g] [<pkg>...]
+
+aliases: up, upgrade
+```
+
+This command will update all the packages listed to the latest version (specified by the **tag** config), respecting semver.
+
+It will also install missing packages. As with all commands that install packages, the **`--dev`** flag will cause **devDependencies** to be processed as well.
+
+If the **`-g`** flag is specified, this command will update globally installed packages.
+
+If no package name is specified, ***all*** packages in the specified location (global or local) will be updated.
+
+- `npm update pkg`：升级本地包；  
+- `npm update -g pkg`：升级全局包。  
+
+不指定 pkg 时，则升级所有过期包：
+
+```shell
+# cnpm update -g
+npm update -g --registry=https://registry.npm.taobao.org
+```
+
+### 升级 npm
+
+执行 npm 相关命令（例如 `npm config get prefix`）时，提示有可更新版本：
 
 ```shell
 faner@MBP-FAN:~|⇒  npm config get prefix
@@ -52,8 +105,6 @@ faner@MBP-FAN:~|⇒  npm config get prefix
    ╰─────────────────────────────────────╯
 
 ```
-
-以上执行 `npm config get prefix` 提示 npm 有可更新版本，也可执行 `[c]npm outdated -g` 或 `[c]npm outdated -g npm` 检测 npm 是否过期。
 
 请勿执行 `npm i npm`：
 
@@ -71,43 +122,43 @@ npm WARN faner No license field.
 added 680 packages in 11.459s
 ```
 
-而应执行 `npm i npm -g` 全局升级 npm。
+> 最好也不要执行 `npm i npm -g` 升级 npm，而应该走 `brew update/upgrade` 随 node 升级 npm？
 
-```
-faner@MBP-FAN:~|⇒ npm i npm -g
-/usr/local/bin/npm -> /usr/local/lib/node_modules/npm/bin/npm-cli.js
-/usr/local/bin/npx -> /usr/local/lib/node_modules/npm/bin/npx-cli.js
-+ npm@6.1.0
-added 247 packages, removed 41 packages and updated 129 packages in 9.802s
+---
 
-faner@MBP-FAN:~|⇒ npm -v
-6.1.0
-```
-
-> 最好不要执行 `npm i npm -g` 升级 npm，而应该走 `brew update/upgrade` 随带 node 升级 npm？  
-> 也可执行 `cnpm i npm -g`？  
-
-### cnpm i cnpm -g 升级 cnpm
-
-执行 `cnpm outdated -g` 或 `cnpm outdated -g cnpm` 检测 cnpm 是否过期：
+执行 `cnpm outdated -g` 或 `cnpm outdated -g npm` 也会检测 npm 是否过期：
 
 ```shell
-faner@MBP-FAN:~|⇒  cnpm -v
-cnpm@5.3.0 (/usr/local/lib/node_modules/cnpm/lib/parse_argv.js)
-npm@5.10.0 (/usr/local/lib/node_modules/cnpm/node_modules/npm/lib/npm.js)
-node@10.2.1 (/usr/local/Cellar/node/10.2.1/bin/node)
-npminstall@3.6.2 (/usr/local/lib/node_modules/cnpm/node_modules/npminstall/lib/index.js)
-prefix=/usr/local
-darwin x64 17.6.0
-registry=https://registry.npm.taobao.org
+faner@MBP-FAN:~|⇒  cnpm outdated -g
+Package     Current  Wanted  Latest  Location
+npm         6.2.0    6.4.0   6.4.0
+```
 
+因此，也可执行 **`cnpm up npm -g`** 可升级 npm：
+
+```shell
+# update/upgrade
+faner@MBP-FAN:~|⇒  cnpm up npm -g
+/usr/local/bin/npm -> /usr/local/lib/node_modules/npm/bin/npm-cli.js
+/usr/local/bin/npx -> /usr/local/lib/node_modules/npm/bin/npx-cli.js
++ npm@6.4.0
+added 5 packages from 3 contributors, removed 9 packages and updated 19 packages in 5.607s
+faner@MBP-FAN:~|⇒  npm -v
+6.4.0
+```
+
+### 升级 cnpm
+
+执行 `[c]npm outdated -g` 或 `cnpm outdated -g cnpm` 检测 cnpm 自身是否过期：
+
+```shell
 # cnpm outdated -g
 faner@MBP-FAN:~|⇒  npm outdated -g --registry=https://registry.npm.taobao.org
 Package  Current  Wanted  Latest  Location
 cnpm       5.3.0   5.3.0   6.0.0
 ```
 
-执行 `cnpm i cnpm -g` 升级 cnmp 自身：
+执行 `cnpm i cnpm -g` 覆盖安装最新的 cnpm：
 
 ```shell
 faner@MBP-FAN:~|⇒  cnpm i cnpm -g
@@ -152,63 +203,65 @@ registry=https://registry.npm.taobao.org
 faner@MBP-FAN:~|⇒
 ```
 
-## [npm-outdated](https://docs.npmjs.com/cli/outdated)
+### 升级 typescript
 
-Check for outdated packages
-
-```
-npm outdated [[<@scope>/]<pkg> ...]
-```
-
-This command will check the registry to see if any (or, specific) installed packages are currently outdated.
-
-基于淘宝 cnpm 源检测过期：
+执行 `cnpm outdated -g` 或 `cnpm outdated -g typescript` 命令，检测到 typescript 过期后，可执行 `cnpm up -g typescript` 进行升级：
 
 ```shell
-# npm outdated -g --registry=https://registry.npm.taobao.org
-faner@MBP-FAN:~|⇒  cnpm outdated -g
-Package     Current  Wanted  Latest  Location
-typescript    2.8.3   2.9.1   2.9.1
-```
-
-基于淘宝 cnpm 源检测具体某个 package 是否过期：`cnpm outdated -g whistle`
-
-## [npm-update](https://docs.npmjs.com/cli/update)
-
-Update a package
-
-```
-npm update [-g] [<pkg>...]
-
-aliases: up, upgrade
-```
-
-This command will update all the packages listed to the latest version (specified by the **tag** config), respecting semver.
-
-It will also install missing packages. As with all commands that install packages, the **`--dev`** flag will cause **devDependencies** to be processed as well.
-
-If the **`-g`** flag is specified, this command will update globally installed packages.
-
-If no package name is specified, ***all*** packages in the specified location (global or local) will be updated.
-
-基于淘宝 cnpm 源更新过期：
-
-```shell
-# cnpm update -g
-npm update -g --registry=https://registry.npm.taobao.org
-```
-
-基于淘宝 cnpm 源更新具体某个过期的 package：`cnpm outdated -g typescript`
-
-```shell
-faner@MBP-FAN:~|⇒  cnpm update -g typescript
+faner@MBP-FAN:~|⇒  cnpm up -g typescript
 /usr/local/bin/tsc -> /usr/local/lib/node_modules/typescript/bin/tsc
 /usr/local/bin/tsserver -> /usr/local/lib/node_modules/typescript/bin/tsserver
 + typescript@2.9.1
 updated 1 package in 2.984s
 ```
 
-当然，也可以执行原始安装命令重新覆盖安装，相当于自然升级了：**`cnpm i -g whistle`**。
+> 类似升级 **npm**：`cnpm up npm -g`
+
+### 升级 whistle
+
+检测到 whistle 过期后，执行 `cnpm up -g whistle` 升级报错文件目录已存在（EEXIST）导致 mkdir 失败：
+
+```shell
+faner@MBP-FAN:~|⇒  cnpm up whistle -g
+npm ERR! path /usr/local/lib/node_modules/whistle/node_modules/concat-stream
+npm ERR! code EEXIST
+npm ERR! errno -17
+npm ERR! syscall mkdir
+npm ERR! EEXIST: file already exists, mkdir '/usr/local/lib/node_modules/whistle/node_modules/concat-stream'
+npm ERR! File exists: /usr/local/lib/node_modules/whistle/node_modules/concat-stream
+npm ERR! Move it away, and try again.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/faner/.npm/_logs/2018-08-20T22_26_09_101Z-debug.log
+```
+
+可根据提示先执行 `rm -rf /usr/local/lib/node_modules/whistle/node_modules/concat-stream` 移除该目录，再尝试执行 update 命令。
+
+---
+
+当然，也可以执行原始安装命令重新覆盖安装，达到升级的目的：**`cnpm i -g whistle`**。
+
+```shell
+faner@MBP-FAN:~|⇒  cnpm i whistle -g
+Downloading whistle to /usr/local/lib/node_modules/whistle_tmp
+Copying /usr/local/lib/node_modules/whistle_tmp/_whistle@1.12.1@whistle to /usr/local/lib/node_modules/whistle
+Installing whistle's dependencies to /usr/local/lib/node_modules/whistle/node_modules
+
+[1/28] adm-zip@0.4.11 installed at node_modules/_adm-zip@0.4.11@adm-zip
+[2/28] extend@^3.0.1 installed at node_modules/_extend@3.0.2@extend
+[3/28] cookie@^0.3.1 installed at node_modules/_cookie@0.3.1@cookie
+[4/28] colors@1.1.2 installed at node_modules/_colors@1.1.2@colors
+...
+[25/28] starting@^4.0.1 installed at node_modules/_starting@4.0.3@starting
+[26/28] express@4.12.3 installed at node_modules/_express@4.12.3@express
+[27/28] xml2js@0.4.17 installed at node_modules/_xml2js@0.4.17@xml2js
+[28/28] weinre2@^1.1.0 installed at node_modules/_weinre2@1.1.0@weinre2
+
+All packages installed (124 packages installed from npm registry, used 2s(network 2s), speed 2.62MB/s, json 104(737.57kB), tarball 4.1MB)
+[whistle@1.12.1] link /usr/local/bin/whistle@ -> /usr/local/lib/node_modules/whistle/bin/whistle.js
+[whistle@1.12.1] link /usr/local/bin/w2@ -> /usr/local/lib/node_modules/whistle/bin/whistle.js
+[whistle@1.12.1] link /usr/local/bin/wproxy@ -> /usr/local/lib/node_modules/whistle/bin/whistle.js
+```
 
 ## [npm-uninstall](https://docs.npmjs.com/cli/uninstall)
 

@@ -59,6 +59,8 @@ faner@MBP-FAN:~|⇒  cat .cnpmrc
 prefix=/usr/local
 ```
 
+关于 NPMRC 配置文件，可执行 `npm help 5 npmrc` 查看说明文档。
+
 ```shell
 faner@MBP-FAN:~|⇒  cnpm config get prefix
 /usr/local
