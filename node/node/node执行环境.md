@@ -45,9 +45,9 @@ DESCRIPTION
      work clients and servers.
 ```
 
-## node 交互
+## node 交互（REPL）
 
-安装 node 后，在终端敲下 `node` 即进入 node 交互控制台。
+安装 node 后，在终端敲下 `node` 即进入 node 交互控制台 —— REPL（Read-Eval-Print-Loop）。
 
 bash shell 的前导符（primary prompt，PS1）为 <kbd>$</kbd>，python shell 前导符为3个大于号 `>>>`，node shell 的前导符则为一个大于号 <kbd>></kbd>，等待输入命令。  
 
@@ -64,6 +64,79 @@ ReferenceError: exit is not defined
 ```
 
 连按两次 `^C` 或输入 `.exit` 即可退出控制台。
+
+### 基本命令
+
+```shell
+
+> .help
+.break    Sometimes you get stuck, this gets you out
+.clear    Alias for .break
+.editor   Enter editor mode
+.exit     Exit the repl
+.help     Print this help message
+.load     Load JS from a file into the REPL session
+.save     Save all evaluated commands in this REPL session to a file
+
+> .editor
+// Entering editor mode (^D to finish, ^C to cancel)
+
+>
+(To exit, press ^C again or type .exit)
+> exit
+ReferenceError: exit is not defined
+> .exit()
+Invalid REPL keyword
+> .exit
+```
+
+`.help`：显示所有基础命令。  
+`.break`：多行书写中途放弃，返回到提示符。也可按两次 `^C`。  
+`.clear`：清除 REPL 运行环境上下文中保存的所有对象（变量与函数）。  
+`.editor`：进入编辑器模式。`^C` 放弃编辑，`^D` 执行编辑内容。  
+`.exit`：退出 REPL 运行环境，也可按两次 `^C`。  
+`.save`：保存 REPL 表达式到文件中。  
+`.load`：加载文件中的表达式到 REPL。  
+
+### 多行输入
+
+Node REPL 会自动检测连续表达式，连续行首会有三个点号（`...`）标识：
+
+```shell
+> for (let i=0; i<5; i++) {
+... console.log('i =', i)
+... }
+i = 0
+i = 1
+i = 2
+i = 3
+i = 4
+```
+
+### 运算结果
+
+在 Node REPL 中，输入运算表达式，则按下回车键在下一命令行返显结果。  
+如果输入一条定义或赋值语句，没有返回值，输出 `undefined`。  
+
+```shell
+> let x = 2018
+undefined
+> let y = 8102
+undefined
+> x+y
+10120
+```
+
+#### 特殊变量（下划线）
+
+Node REPL 使用下划线（`_`）变量存储上一个表达式的运行结果，类似 bc 中的 `last` 变量。
+
+```shell
+> 200+300
+500
+> _+400
+900
+```
 
 ### 与 python 对比
 
