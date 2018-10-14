@@ -46,6 +46,8 @@ Netscape presented JavaScript to Ecma International, which develops standards an
 [Standard ECMA-262 - 5.1 Edition / June 2011](https://ecma-international.org/ecma-262/5.1/)  
 ECMAScript® Language Specification  
 
+> `/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/extensions/node_modules/typescript/lib/lib.es5.d.ts`
+
 [es5 compatibility table](http://kangax.github.io/compat-table/es5)
 
 微信开发者工具支持 **ES6 转 ES5**。
@@ -58,6 +60,9 @@ vscode 中 jsconfig 配置 JS 版本，相关语法支持和提示不一样。
 ECMAScript® 2015 Language Specification  
 
 **Synonyms**: ES2015, and ECMAScript 2015
+
+> `/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/extensions/node_modules/typescript/lib/lib.es6.d.ts`  
+> `/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/extensions/node_modules/typescript/lib/lib.es2015.d.ts`  
 
 [ECMAScript 6 Features](http://es6-features.org/)  
 
@@ -72,9 +77,13 @@ ruanyifeng - [ECMAScript 6 入门](http://es6.ruanyifeng.com/#README)
 [ECMA-262 - 7ᵗʰ Edition / June 2016](https://ecma-international.org/ecma-262/7.0/)  
 ECMAScript® 2016 Language Specification  
 
+> `/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/extensions/node_modules/typescript/lib/lib.es2016.d.ts`  
+
 ## ES8
 
 [ECMA-262, 8th edition, June 2017](https://ecma-international.org/ecma-262/8.0/)  
 ECMAScript® 2017 Language Specification  
+
+> `/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/extensions/node_modules/typescript/lib/lib.es2017.d.ts`  
 
 [ECMAScript 2017 (ES8): the final feature set](http://2ality.com/2016/02/ecmascript-2017.html)  
