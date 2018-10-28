@@ -1,5 +1,9 @@
 # [Frontend Knowledge Structure](https://github.com/JacksonTian/fks)
 
+- `HTML`：负责网页的结构，又称 **语义层**  
+- `CSS`：负责网页的样式，又称 **视觉层**  
+- `JavaScript`：负责网页的逻辑和交互，又称 **逻辑层** 或 **交互层**  
+
 ## [HTML](https://www.w3.org/html/)
 
 Hypertext Markup Language (HTML) is the standard markup language for creating web pages and web applications.  
@@ -44,6 +48,7 @@ The vast majority of websites use it, and all major web browsers have a dedicate
 [**JavaScript Tutorial**](https://www.w3schools.com/js/default.asp) - w3schools  
 
 [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/) - [**JavaScript 教程**](https://wangdoc.com/javascript/) - 阮一峰  
+[**ECMAScript 6 入门**](http://es6.ruanyifeng.com/) - 阮一峰  
 
 [learn javascript](https://www.codeschool.com/learn/javascript) - code school  
 [Introduction To JavaScript](https://www.codecademy.com/learn/introduction-to-javascript)  [Learn the fundamentals of JavaScript](https://www.codecademy.com/en/tracks/javascript) - codecademy  
@@ -97,12 +102,14 @@ CSS is a cornerstone technology of the World Wide Web, alongside HTML and JavaSc
 
 [Cascading Style Sheets](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - Wikipedia  
 
-[CSS Tutorial](https://www.w3schools.com/css/) - w3schools  
-[CSS 教程](http://www.w3school.com.cn/css/index.asp)  
-
 [CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS) - MDN  
 [Learn CSS](https://www.codecademy.com/learn/learn-css) - Codecademy  
-[CSS-Tricks](https://css-tricks.com/)  
+
+[Illustrated CSS3 Details and Cases](https://github.com/airen/CSS3)  
+
+[CSS Tutorial](https://www.w3schools.com/css/) - w3schools  
+[CSS 教程](http://www.w3school.com.cn/css/index.asp)  
+[JavaScript 教程](https://wangdoc.com/javascript/) / [CSS操作](https://wangdoc.com/javascript/dom/css.html) - 阮一峰  
 
 ### [less](http://lesscss.org/)
 
@@ -112,6 +119,12 @@ Less (which stands for Leaner Style Sheets) is a backwards-compatible language e
 [wiki](https://en.wikipedia.org/wiki/Less_(stylesheet_language))  
 [github](https://github.com/less)  
 [less - npm](https://www.npmjs.com/package/less)  
+
+---
+
+[Sass](http://sass-lang.com/)  
+[PostCSS](https://postcss.org/)  
+[cssnext](http://cssnext.io/)  
 
 ## references
 
