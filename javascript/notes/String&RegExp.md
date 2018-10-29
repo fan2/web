@@ -3,6 +3,8 @@
 
 ### match
 
+字符串实例对象的 `match()` 方法对字符串进行正则匹配，返回匹配结果。
+
 ```typescript
 // lib.es5.d.ts
 interface RegExpMatchArray extends Array<string> {
@@ -10,9 +12,16 @@ interface RegExpMatchArray extends Array<string> {
     input?: string;
 }
 
-// lib.es2015.symbol.wellknown.d.ts
 interface String {
+    
+    // lib.es5.d.ts
+    /**
+     * Matches a string with a regular expression, and returns an array containing the results of that search.
+     * @param regexp A variable name or string literal containing the regular expression pattern and flags.
+     */
+    match(regexp: string | RegExp): RegExpMatchArray | null;
 
+    // lib.es2015.symbol.wellknown.d.ts
     /**
      * Matches a string an object that supports being matched against, and returns an array containing the results of that search.
      * @param matcher An object that supports being matched against.
@@ -22,12 +31,82 @@ interface String {
 }
 ```
 
-### replace
+字符串的 `match()` 方法与正则对象的 `exec()` 方法非常类似：匹配成功返回一个数组，匹配失败返回 null。
+
+如果正则表达式带有 `g` 修饰符，则该方法与正则对象的 `exec()` 方法行为不同，会一次性返回所有匹配成功的结果。
+
+### search
+
+字符串对象的 `search()` 方法，返回 **第一个** 满足条件的匹配结果在整个字符串中的位置。  
+如果没有任何匹配，则返回 -1。
 
 ```typescript
-// lib.es2015.symbol.wellknown.d.ts
+
 interface String {
 
+    // lib.es5.d.ts
+    /**
+     * Finds the first substring match in a regular expression search.
+     * @param regexp The regular expression pattern and applicable flags.
+     */
+    search(regexp: string | RegExp): number;
+
+    // lib.es2015.symbol.wellknown.d.ts
+    /**
+     * Finds the first substring match in a regular expression search.
+     * @param searcher An object which supports searching within a string.
+     */
+    search(searcher: { [Symbol.search](string: string): number; }): number;
+
+}
+```
+
+### split
+
+字符串对象的 `split()` 方法按照正则规则分割字符串，返回一个由分割后的各个部分组成的数组。
+
+该方法接受两个参数，第一个参数是正则表达式，表示分隔规则，第二个参数是返回数组的最大成员数。
+
+```typescript
+interface String {
+
+    // lib.es5.d.ts
+    /**
+      * Split a string into substrings using the specified separator and return them as an array.
+      * @param separator A string that identifies character or characters to use in separating the string. If omitted, a single-element array containing the entire string is returned.
+      * @param limit A value used to limit the number of elements returned in the array.
+      */
+    split(separator: string | RegExp, limit?: number): string[];
+
+    // lib.es2015.symbol.wellknown.d.ts
+    /**
+     * Split a string into substrings using the specified separator and return them as an array.
+     * @param splitter An object that can split a string.
+     * @param limit A value used to limit the number of elements returned in the array.
+     */
+    split(splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[];
+}
+```
+
+### replace
+
+字符串对象的 `replace()` 方法可以替换匹配的值。它接受两个参数，第一个是正则表达式，表示搜索模式，第二个是替换的内容。
+
+正则表达式如果不加 `g` 修饰符，就替换第一个匹配成功的值，否则替换所有匹配成功的值。
+
+```typescript
+interface String {
+
+    // lib.es5.d.ts
+    /**
+      * Replaces text in a string, using a regular expression or search string.
+      * @param searchValue A string to search for.
+      * @param replacer A function that returns the replacement text.
+      */
+    replace(searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string;
+
+
+    // lib.es2015.symbol.wellknown.d.ts
     /**
      * Replaces text in a string, using an object that supports replacement within a string.
      * @param searchValue A object can search for and replace matches within a string.
@@ -38,9 +117,30 @@ interface String {
 }
 ```
 
+以下代码片段用于消除字符串首尾的空格：
+
+```javascript
+var str = '  #id div.class  ';
+
+str.replace(/^\s+|\s+$/g, '')
+// "#id div.class"
+```
+
+`replace()` 方法的第二个参数可以使用美元符号 `$`，用来指代所替换的内容。
+
+- $&：匹配的子字符串。  
+- $`：匹配结果前面的文本。  
+- $'：匹配结果后面的文本。  
+- $n：匹配成功的第n组内容，n是从1开始的自然数。  
+- \$\$：指代美元符号 `$`。  
+
 ## RegExp
 
+`RegExp.prototype.lastIndex`：返回一个整数，表示`下一次开始搜索的位置`。该属性可读写，但是只在进行连续搜索时有意义。
+
 ### test
+
+正则实例对象的 `test()` 方法返回一个布尔值，测试给定的参数字符串是否匹配当前模式。
 
 ```typescript
 // lib.es5.d.ts
@@ -56,6 +156,15 @@ interface RegExp {
 ```
 
 ### exec
+
+正则实例对象的 `exec()` 方法，返回参数字符串匹配当前模式的结果。
+
+如果发现匹配，就返回一个数组，成员是匹配成功的子字符串，否则返回 **null**。
+
+如果正则表达式中定义了组，就可以在 **RegExp** 对象上用 `exec()` 方法提取出子串来。
+
+`exec()` 方法在匹配成功后，会返回一个 **Array**，第一个元素是正则表达式匹配到的整个字符串，后面的字符串表示匹配成功的子串。  
+`exec()` 方法在匹配失败时返回 **null**。
 
 ```typescript
 // lib.es5.d.ts
@@ -74,6 +183,76 @@ interface RegExp {
 
 }
 ```
+
+exec 方法的返回数组还包含以下两个属性：
+
+- `input`：整个原字符串。  
+- `index`：整个模式匹配成功的开始位置（从0开始计数）。  
+
+正则表达式加上 `g` 修饰符，则可以多次调用 `exec()` 方法，下一次搜索的位置从上一次匹配成功结束的位置开始。
+
+```shell
+Ξ ~ → node
+> let s = 'JavaScript, VBScript, JScript and ECMAScript';
+undefined
+> let re = /[a-zA-Z]+Script/g
+undefined
+> re.exec(s);
+[ 'JavaScript',
+  index: 0,
+  input: 'JavaScript, VBScript, JScript and ECMAScript',
+  groups: undefined ]
+> re.lastIndex
+10
+> re.exec(s)
+[ 'VBScript',
+  index: 12,
+  input: 'JavaScript, VBScript, JScript and ECMAScript',
+  groups: undefined ]
+> re.lastIndex
+20
+> re.exec(s)
+[ 'JScript',
+  index: 22,
+  input: 'JavaScript, VBScript, JScript and ECMAScript',
+  groups: undefined ]
+> re.lastIndex
+29
+> re.exec(s)
+[ 'ECMAScript',
+  index: 34,
+  input: 'JavaScript, VBScript, JScript and ECMAScript',
+  groups: undefined ]
+> re.lastIndex
+44
+> re.exec(s)
+null
+```
+
+利用 `g` 修饰符允许多次匹配的特点，可以用一个循环完成全部匹配。
+
+```shell
+~ » node
+> .editor
+// Entering editor mode (^D to finish, ^C to cancel)
+let s = 'JavaScript, VBScript, JScript and ECMAScript';
+let re = /[a-zA-Z]+Script/g;
+
+while(true) {
+    let match = re.exec(s);
+    if (!match) break;
+    console.log('#' + match.index + ':' + match[0]);
+}
+
+#0:JavaScript
+#12:VBScript
+#22:JScript
+#34:ECMAScript
+undefined
+>
+```
+
+在上面代码中，只要 `exec` 方法不返回 null，就会一直循环下去，每次输出匹配的位置和匹配的文本。
 
 ## demo
 
