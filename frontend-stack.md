@@ -101,13 +101,14 @@ CSS is a cornerstone technology of the World Wide Web, alongside HTML and JavaSc
 ---
 
 [Cascading Style Sheets](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - Wikipedia  
-
-[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS) - MDN  
-[Learn CSS](https://www.codecademy.com/learn/learn-css) - Codecademy  
-
 [Illustrated CSS3 Details and Cases](https://github.com/airen/CSS3)  
 
-[CSS Tutorial](https://www.w3schools.com/css/) - w3schools  
+[CSS Tutorial](https://www.w3schools.com/css/) & [CSS Reference](https://www.w3schools.com/cssref/) - w3schools  
+[CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) & [CSS reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) - MDN  
+
+[CSS Reference](https://cssreference.io/)  
+[Learn CSS](https://www.codecademy.com/learn/learn-css) - Codecademy  
+
 [CSS 教程](http://www.w3school.com.cn/css/index.asp)  
 [JavaScript 教程](https://wangdoc.com/javascript/) / [CSS操作](https://wangdoc.com/javascript/dom/css.html) - 阮一峰  
 
