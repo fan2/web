@@ -33,7 +33,14 @@ In global mode (ie, with **`-g`** or **`--global`** appended to the command), it
 
 By default, **npm install** will install all modules listed as dependencies in [package.json](https://docs.npmjs.com/files/package.json).
 
-用 npm 安装淘宝 [cnpm](https://npm.taobao.org/)：`npm install cnpm -g --registry=https://registry.npm.taobao.org`  
+用 npm 安装淘宝 [cnpm](https://npm.taobao.org/)：
+
+```
+# npm install -g cnpm --registry=http://r.cnpmjs.org
+# npm install cnpm -g --registry=https://registry.npm.taobao.org
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
 安装 whistle：`[c]npm install -g whistle`；  
 同时安装 tslint 和 typescript：`[c]npm i -g tslint typescript`；  
 	
