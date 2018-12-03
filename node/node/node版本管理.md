@@ -1,8 +1,25 @@
-## NVM
+
+无论是 windows 还是 macOS，都建议安装 **nvm**，通过 nvm 来安装切换管理配置 node 版本。
 
 [NVM](https://github.com/creationix/nvm): Node Version Manager
 
 Manage multiple Node.js versions
+
+## [nvm-windows](https://github.com/coreybutler/nvm-windows)
+
+[Windows上安装nodejs版本管理器nvm](https://www.jianshu.com/p/324044f2f542)  
+
+[Windows 下安装 nvm 管理 nodejs 版本](https://segmentfault.com/a/1190000007612011)  
+
+**`nvm node_mirror [url]`**：设置node镜像，默认为 `https://nodejs.org/dist/`
+
+> 建议设置为淘宝的镜像 `https://npm.taobao.org/mirrors/node/`
+
+**`nvm npm_mirror [url]`**：设置npm镜像，默认为 `https://github.com/npm/npm/archive/`
+
+> 建议设置为淘宝的镜像 `https://npm.taobao.org/mirrors/npm/`
+
+## nvm（macOS）
 
 `brew search nvm`: 搜索 nvm 包；  
 `brew info nvm`: 查看 nvm 包信息；  
@@ -52,6 +69,47 @@ export NVM_DIR="$HOME/.nvm"
 
 执行 `nvm unload` 可从 shell 卸载 nvm（Unload `nvm` from shell）。
 
+### mirrors
+
+[nvm 设置下载 node 的镜像地址](https://github.com/xhlwill/blog/issues/7)
+
+macOS 和 linux 版 nvm 没有 node_mirror/npm_mirror 这两个命令，设置 node 镜像地址的方式是：
+
+```
+export NVM_NODEJS_ORG_MIRROR=https://nodejs.org/dist
+```
+
+执行 `vim /usr/local/opt/nvm/nvm.sh` 查看 nvm.sh：
+
+```shell
+faner@MBP-FAN ~
+0 % vim /usr/local/opt/nvm/nvm.sh
+```
+
+其中定义了 nvm_get_mirror 函数：
+
+```shell
+nvm_get_mirror() {
+  case "${1}-${2}" in
+    node-std) nvm_echo "${NVM_NODEJS_ORG_MIRROR:-https://nodejs.org/dist}" ;;
+    iojs-std) nvm_echo "${NVM_IOJS_ORG_MIRROR:-https://iojs.org/dist}" ;;
+    *)
+      nvm_err 'unknown type of node.js or io.js release'
+      return 1
+    ;;
+  esac
+}
+```
+
+[Change NVM_NODEJS_ORG_MIRROR to NODEJS_ORG_MIRROR to solve npm install error](https://github.com/nodejs/node-gyp/issues/942)
+
+[修改nvm镜像地址](https://www.cnblogs.com/lonny/p/NVM_NODEJS_ORG_MIRROR.html)  
+[nvm 使用淘宝镜像](https://www.chenky.com/archives/746)  
+
+```
+export NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node
+```
+
 ### uninstall
 
 执行 `nvm -h` 查看帮助：
@@ -86,8 +144,8 @@ nvm ls-remote <version>                   List remote versions available for ins
 
 为了避免从 `0.*` 开始的早期版本罗列过长，可以指定只查看指定（主）版本的列表：
 
-`nvm ls-remote v10`：列举 node 10 的所有版本；  
-`nvm ls-remote 11`：列举 node 11 的所有版本。  
+- `nvm ls-remote v10`：列举 node 10 的所有版本；  
+- `nvm ls-remote 11`：列举 node 11 的所有版本。  
 
 #### install
 
@@ -100,7 +158,69 @@ nvm ls-remote <version>                   List remote versions available for ins
     --latest-npm                            After installing, attempt to upgrade to the latest working npm on the given node version
 ```
 
-`nvm install <version>`： 安装指定版本的 node。
+**`nvm install <version>`**： 安装指定版本的 node。
+
+- `nvm install 10.13.0` 安装 node 10.13.0。
+
+```
+ faner@MBP-FAN  ~  nvm install 10.13.0
+Downloading and installing node v10.13.0...
+Downloading http://npm.taobao.org/mirrors/node//v10.13.0/node-v10.13.0-darwin-x64.tar.xz...
+######################################################################## 100.0%
+Computing checksum with shasum -a 256
+Checksums matched!
+nvm is not compatible with the npm config "prefix" option: currently set to "/usr/local"
+Run `npm config delete prefix` or `nvm use --delete-prefix v10.13.0` to unset it.
+```
+
+```
+➜  ~  node -v
+zsh: command not found: node
+
+➜  ~  npm -v
+env: node: No such file or directory
+
+➜  ~  nvm ls
+       v10.13.0
+node -> stable (-> v10.13.0) (default)
+stable -> 10.13 (-> v10.13.0) (default)
+iojs -> N/A (default)
+lts/* -> lts/dubnium (-> v10.13.0)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.14.4 (-> N/A)
+lts/carbon -> v8.13.0 (-> N/A)
+lts/dubnium -> v10.13.0
+
+➜  ~  nvm use 10.13.0
+nvm is not compatible with the npm config "prefix" option: currently set to "/usr/local"
+Run `npm config delete prefix` or `nvm use --delete-prefix v10.13.0` to unset it.
+
+➜  ~  npm config delete prefix
+env: node: No such file or directory
+
+➜  ~  nvm use --delete-prefix v10.13.0
+Now using node v10.13.0 (npm v6.4.1)
+```
+
+原来后面三个值都为 `/usr/local`，现在变为了 `/Users/faner/.nvm/versions/node/v10.13.0`：
+
+```
+➜  ~  npm prefix
+/Users/faner
+➜  ~  npm prefix -g
+/Users/faner/.nvm/versions/node/v10.13.0
+➜  ~  npm config get prefix
+/Users/faner/.nvm/versions/node/v10.13.0
+➜  ~  npm config get prefix -g
+/Users/faner/.nvm/versions/node/v10.13.0
+```
+
+```
+➜  ~  node -v
+v10.13.0
+➜  ~  npm -v
+6.4.1
+```
 
 #### installed & current
 
@@ -113,7 +233,7 @@ nvm ls-remote <version>                   List remote versions available for ins
 
 `nvm ls`：列出本地已经安装的 node 版本；  
 `nvm use <version>`：激活指定版本的 node；  
-`nvm current`：查看当前激活（正在使用）的 node 版本；  
+`nvm current`：查看当前激活（use）的 node 版本；  
 
 #### cache path
 
@@ -142,77 +262,46 @@ nvm ls-remote <version>                   List remote versions available for ins
   nvm uninstall <version>                   Uninstall a version
 ```
 
-## brew(macOS)
+## brew（macOS）
 
-**macOS 下建议通过 brew 安装 nvm，再通过 nvm 来安装切换管理配置 node 版本**。
+**macOS 下还是建议通过 brew 安装 nvm，再通过 nvm 来安装切换管理配置 node 版本**。
 
-如果之前直接使用 brew 安装的 node，当前 node 版本为 v10.12.0，执行 `brew update` - `brew upgrade` 后将升级到 v11.0.0。
+如果之前使用 brew 安装的 node 10.12.0，执行 `brew update` - `brew upgrade` 后将自动升级到最新的 v11.0.0。
 
-node 11 由于 [clearTimeout blocks the process](https://github.com/nodejs/node/issues/23860) 引起 100% CPU usage 导致 whistle 假死。
+node 11 由于 [clearTimeout blocks the process](https://github.com/nodejs/node/issues/23860) 引起 100% CPU usage 导致 whistle 假死。这时，得考虑暂时恢复使用 node10 旧版本，待完全稳定兼容后再升级回最新版本的 node。
 
-此时，可考虑使用 brew 的 switch 命令来切换到残存的历史版本。
+以下提供3种参考方案。
 
-### brew switch
+### brew switch + pin
 
-macOS 下可调用 `brew switch` 命令切换已安装的 node 版本。
+如果之前未执行过 `brew prune`，`/usr/local/Cellar/node/` 目录下可能还残存过往安装的历史版本，此时可通过 `brew switch node <version>` 切换 node 到指定历史版本。
 
-执行 `brew switch -h` 查看 switch 命令简介：
+为防止未来的几个不稳定版本在 upgrade 时自动升级，可以执行 `brew pin node` 阻止 node 更新，在短期内将 node 固定在 v10.12.0 版本。等到 node 更新到已解决问题的稳定版本 v11.1.0 或 v.11.2.0 时，再执行 `brew unpin node` 解除禁止更新限制。  
 
-```
-➜  ~  brew switch -h
-brew switch formula version:
-    Symlink all of the specific version of formula's install to Homebrew prefix.
-```
+### brew install node@10
 
-执行 `tree -L 1 /usr/local/Cellar/node` 可查看 `/usr/local/Cellar/node` 下尚未删除的 node 缓存历史版本。
+执行 `brew search node`，可以看到有 `node@6`、`node@8`、`node@10` 等历史版本可供选择安装。
 
-```
-~ tree -L 1 /usr/local/Cellar/node
-/usr/local/Cellar/node
-├── 10.10.0
-├── 10.11.0
-├── 10.12.0
-└── 11.0.0
+执行 `brew install node@10` 可安装 node10 的最后一个 LTS 版本 —— node 10.13.0。
 
-4 directories, 0 files
-```
+从 `brew info node@10` 和 `brew install node@10` 的 Caveats 信息可知，安装的 node@10 是 keg-only，没有自动 symlink 到 `/usr/local` 目录下。
 
-执行 `brew switch node 10.12.0` 切换到 node 10 最后一个版本。
+按照 Caveats 说明，需要执行 `echo 'export PATH="/usr/local/opt/node@10/bin:$PATH"' >> ~/.zshrc` 将其写入 `.zshrc`（或 `.bash_profile`），这样每次启动 shell 都会 export PATH，node@10（`/usr/local/opt/node@10/bin`）添加到 PATH 靠前位置，这样 node@10 优先 node@11 被找到，从而实现替换。
+
+### brew install node@9 ?
+
+执行 `brew search node@9`，提示仓库中没有 node9：
 
 ```
-~ brew switch node 10.12.0
-Cleaning /usr/local/Cellar/node/10.11.0
-Cleaning /usr/local/Cellar/node/10.12.0
-Cleaning /usr/local/Cellar/node/11.0.0
-Cleaning /usr/local/Cellar/node/10.10.0
-7 links created for /usr/local/Cellar/node/10.12.0
+~ » brew search node@9                                                                                  ~
+No formula or cask found for "node@9".
 ```
 
-重新执行 `node -v`，可以看到 node 已切回 v10.12.0 版本：
+那如何安装 node9，或 node10 更老的版本（例如 node 10.12.0）呢？
 
-```
-~ node -v
-v10.12.0
-```
+参考 **Homebrew 安装指定版本的软件**：[thrift](https://www.jianshu.com/p/aadb54eac0a8) / [gradle](http://jefferlau.me/2017/11/30/Homebrew-%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%AC%E7%9A%84%E8%BD%AF%E4%BB%B6/) / [ffmpeg](https://segmentfault.com/a/1190000015346120)  
 
-### brew pin/unpin
-
-为防止未来的几个不稳定版本在 upgrade 时自动升级，可以执行 `brew pin node` 阻止 node 更新，在短期内将 node 固定在 v10.12.0 版本。  
-等到 node 更新到已解决问题的稳定版本 v11.1.0 或 v.11.2.0 时，可再执行 `brew unpin node` 解除禁止更新限制。  
-
-## [nvm-windows](https://github.com/coreybutler/nvm-windows)
-
-[Windows上安装nodejs版本管理器nvm](https://www.jianshu.com/p/324044f2f542)  
-
-[Windows 下安装 nvm 管理 nodejs 版本](https://segmentfault.com/a/1190000007612011)  
-
-**`nvm node_mirror [url]`**：设置node镜像，默认为 `https://nodejs.org/dist/`
-
-> 建议设置为淘宝的镜像 `https://npm.taobao.org/mirrors/node/`
-
-**`nvm npm_mirror [url]`**：设置npm镜像，默认为 `https://github.com/npm/npm/archive/`
-
-> 建议设置为淘宝的镜像 `https://npm.taobao.org/mirrors/npm/`
+> 从 `brew info` 的 From 中爬出指定版本提交的 commit ID 及其 rb，然后 brew install 从本地指定版本的 rb 安装。
 
 ## n
 
