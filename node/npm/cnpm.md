@@ -1,69 +1,29 @@
-## node
 
-```shell
-faner@MBP-FAN:~|⇒  node -v
-v10.1.0
+## cnpm registry
 
-faner@MBP-FAN:~|⇒  which node
-/usr/local/bin/node
+npm 默认的镜像源站点 `https://registry.npmjs.org/` 在国外，国内的访问速度特别慢。
 
-faner@MBP-FAN:~|⇒  type -a node
-node is /usr/local/bin/node
+查看默认的 registry：
 
-faner@MBP-FAN:~|⇒  ls -al `which node`
-lrwxr-xr-x  1 faner  admin  30 May 12 20:32 /usr/local/bin/node -> ../Cellar/node/10.1.0/bin/node
+```
+faner@MBP-FAN:~|⇒  npm config get registry
+https://registry.npmjs.org/
 ```
 
-## npm
+每次执行 npm install 命令时，通过 `--registry` 参数指定从 cnpm 镜像源安装：
 
 ```shell
-faner@MBP-FAN:~|⇒  npm -v
-6.1.0
-
-faner@MBP-FAN:~|⇒  which npm
-/usr/local/bin/npm
-
-faner@MBP-FAN:~|⇒  type -a npm
-npm is /usr/local/bin/npm
-
-faner@MBP-FAN:~|⇒  ls -al `which npm`
-lrwxr-xr-x  1 faner  admin  38 May 24 06:38 /usr/local/bin/npm -> ../lib/node_modules/npm/bin/npm-cli.js
+# or specify mirror install directly：
+npm install whistle -g --registry=https://registry.npm.taobao.org
 ```
 
-### npm -h
+建议修改默认的镜像源为淘宝 cnpm：
 
-```shell
-faner@MBP-FAN:~|⇒  npm -h
-
-Usage: npm <command>
-
-where <command> is one of:
-    access, adduser, audit, bin, bugs, c, cache, ci, cit,
-    completion, config, create, ddp, dedupe, deprecate,
-    dist-tag, docs, doctor, edit, explore, get, help,
-    help-search, hook, i, init, install, install-test, it, link,
-    list, ln, login, logout, ls, outdated, owner, pack, ping,
-    prefix, profile, prune, publish, rb, rebuild, repo, restart,
-    root, run, run-script, s, se, search, set, shrinkwrap, star,
-    stars, start, stop, t, team, test, token, tst, un,
-    uninstall, unpublish, unstar, up, update, v, version, view,
-    whoami
-
-npm <command> -h     quick help on <command>
-npm -l           display full usage info
-npm help <term>  search for help on <term>
-npm help npm     involved overview
-
-Specify configs in the ini-formatted file:
-    /Users/faner/.npmrc
-or on the command line via: npm <command> --key value
-Config info can be viewed via: npm help config
-
-npm@6.1.0 /usr/local/lib/node_modules/npm
+```
+npm config set registry="https://registry.npm.taobao.org/"
 ```
 
-模块：`/usr/local/lib/node_modules/npm`  
-配置：`/Users/faner/.npmrc`  
+也可考虑安装 cnpm 命令，替代 npm。
 
 ## [cnpm](http://npm.taobao.org/)
 
@@ -72,14 +32,7 @@ In China, you can install whistle using npm mirror of taobao to speed up install
 > [tnpm /cnpm 安装报错](https://segmentfault.com/q/1010000009008062)  
 > [nodejs linux 环境设置 tnpm 安装](https://blog.csdn.net/lilei_ndsc/article/details/52190010)  
 
-执行 npm 命令时，指定 `--registry` 参数，从 cnpm 镜像源安装：
-
-```shell
-# or specify mirror install directly：
-npm install whistle -g --registry=https://registry.npm.taobao.org
-```
-
-或用 npm 安装 cnpm，然后用 cnpm 命令替代 npm：
+用 npm 指定从淘宝镜像源安装 cnpm：
 
 ```shell
 faner@MBP-FAN:~|⇒  npm install cnpm -g --registry=https://registry.npm.taobao.org
@@ -92,7 +45,11 @@ npminstall@3.6.2 (/usr/local/lib/node_modules/cnpm/node_modules/_npminstall@3.6.
 prefix=/usr/local
 darwin x64 17.6.0
 registry=https://registry.npm.taobao.org
+```
 
+之后，即可用 cnpm 命令替代 npm。以下使用 cnpm 命令安装 whistle：
+
+```shell
 cnpm install -g whistle
 ```
 
@@ -154,4 +111,7 @@ Help: http://cnpmjs.org/help/cnpm
       Config info can be viewed via: npm help config
 ```
 
+### cnpm config
+
 配置：`/Users/faner/.cnpmrc`  
+

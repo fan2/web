@@ -39,3 +39,21 @@ prefix = ${HOME}/.npm-packages
 ifan@THOMASFAN-MC1:~|⇒  cat .npmrc
 proxy=http://proxy.company.com:8080
 ```
+
+## npm registry
+
+执行 `npm config get registry` 查看默认的 registry：
+
+```
+faner@MBP-FAN:~|⇒  npm config get registry
+https://registry.npmjs.org/
+```
+
+npm 默认的镜像源站点 `https://registry.npmjs.org/` 在国外，国内的访问速度特别慢。
+建议修改默认的镜像源为淘宝 cnpm：
+
+```
+npm config set registry="https://registry.npm.taobao.org/"
+```
+
+也可考虑安装 cnpm 命令，替代 npm。

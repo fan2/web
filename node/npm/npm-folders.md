@@ -1,5 +1,7 @@
 # [npm-folders](https://docs.npmjs.com/files/folders)
 
+执行 `npm help 5 folders` 可以查看相关帮助。
+
 npm-folders : Folder Structures Used by npm
 
 - Local install (default): puts stuff in `./node_modules` of the current package root.  
@@ -7,8 +9,6 @@ npm-folders : Folder Structures Used by npm
 - Install it **locally** if you're going to `require()` it.  
 - Install it **globally** if you're going to run it on the command line.  
 - If you need both, then install it in both places, or use **npm link**.  
-
-`npm help 5 folders`
 
 ## [prefix Configuration](https://docs.npmjs.com/files/folders#prefix-configuration)
 
@@ -28,6 +28,8 @@ Global installs on Unix systems go to **`{prefix}/lib/node_modules`**. Global in
 Scoped packages are installed the same way, except they are grouped together in a sub-folder of the relevant **node_modules** folder with the name of that scope prefix by the @ symbol, e.g. **`npm install @myorg/package`** would place the package in `{prefix}/node_modules/@myorg/package`. See [scope](https://docs.npmjs.com/misc/scope) for more details.
 
 If you wish to `require()` a package, then install it locally.
+
+> 执行 `npm root`（`npm root -g`）可查看当前用户和全局安装的 node_modules 目录。
 
 ## Executables
 
