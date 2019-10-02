@@ -43,7 +43,23 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 安装 whistle：`[c]npm install -g whistle`；  
 同时安装 tslint 和 typescript：`[c]npm i -g tslint typescript`；  
-	
+
+```
+╭─faner at THOMASFAN-MB1 in ~
+╰─○ npm list -g --depth=0
+/Users/faner/.nvm/versions/node/v11.15.0/lib
+└── npm@6.7.0
+
+╭─faner at THOMASFAN-MB1 in ~
+╰─○ npm install -g whistle
+
+╭─faner at THOMASFAN-MB1 in ~
+╰─○ npm list -g --depth=0
+/Users/faner/.nvm/versions/node/v11.15.0/lib
+├── npm@6.7.0
+└── whistle@1.17.0
+```
+
 ## [npm-outdated](https://docs.npmjs.com/cli/outdated)
 
 Check for outdated packages
@@ -185,7 +201,7 @@ Installing cnpm's dependencies to /usr/local/lib/node_modules/cnpm/node_modules
 [11/13] urllib@^2.17.0 installed at node_modules/_urllib@2.28.0@urllib
 [12/13] npminstall@^3.0.0 installed at node_modules/_npminstall@3.6.2@npminstall
 [13/13] npm@^6.1.0 installed at node_modules/_npm@6.1.0@npm
-deprecate urllib@2.28.0 › proxy-agent@2.3.1 › socks-proxy-agent@3.0.1 › socks@^1.1.10 If using 2.x branch, please upgrade to at least 2.1.6 to avoid a serious bug with socket data flow and an import issue introduced in 2.1.0
+deprecate urllib@2.28.0 › proxy-agent@2.3.1 › socks-proxy-agent@3.0.1 › socks@^1.1.10 If 2.x branch, please upgrade to at least 2.1.6 to avoid a serious bug with socket data flow and an import issue introduced in 2.1.0
 Recently updated (since 2018-05-23): 6 packages (detail see file /usr/local/lib/node_modules/cnpm/node_modules/.recently_updates.txt)
   2018-05-26
     → npminstall@3.6.2 › node-gyp@3.6.2 › which@1(1.3.1) (06:27:32)

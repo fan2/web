@@ -110,6 +110,12 @@ nvm_get_mirror() {
 export NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node
 ```
 
+也可考虑采用腾讯云镜像：
+
+```
+export NODEJS_ORG_MIRROR=http://mirrors.cloud.tencent.com/nodejs-release/
+```
+
 ### uninstall
 
 执行 `nvm -h` 查看帮助：
@@ -140,12 +146,14 @@ nvm ls-remote                             List remote versions available for ins
 nvm ls-remote <version>                   List remote versions available for install, matching a given <version>
 ```
 
-列出所有支持的 node 版本。
+列出所有支持的 node 版本。列表较长，不像 Windows 下的 `nvm list available` 命令，对可用进行了 `CURRENT`、`LTS`、`OLD STABLE` 分类。
 
 为了避免从 `0.*` 开始的早期版本罗列过长，可以指定只查看指定（主）版本的列表：
 
 - `nvm ls-remote v10`：列举 node 10 的所有版本；  
 - `nvm ls-remote 11`：列举 node 11 的所有版本。  
+
+可以添加 `--lts` 选项，只列举 LTS（长期维护）版本，但是列表也较长，建议执行 `nvm ls-remote --lts | grep 'Latest'` 过滤出所有的 **Latest LTS** 版本即可。
 
 #### install
 
