@@ -35,6 +35,62 @@ interface String {
 
 如果正则表达式带有 `g` 修饰符，则该方法与正则对象的 `exec()` 方法行为不同，会一次性返回所有匹配成功的结果。
 
+#### demo
+
+```TypeScript
+function getQuery(key) {
+    var m = "",
+        location = global.location;
+    if (location) {
+        m = location.search.match(new RegExp('(\\?|&)' + key + '=([^&]*)(#|&|$)'));
+    }
+    return !m ? "" : decodeURIComponent(m[2]);
+}
+
+function getCookie(key) {
+    var r = new RegExp("(?:^|;+|\\s+)" + key + "=([^;]*)");
+    var m = '';
+    if (global.document) {
+        m = global.document.cookie.match(r);
+    }
+    return (!m ? "" : m[1]) || null;
+}
+```
+
+**getQuery** 获取当前 URL 中指定参数的值：`?key=value` 或 `&key=value`
+
+```
+RegExp('(\\?|&)' + key + '=([^&]*)(#|&|$)');
+```
+
+1. 第1个分组匹配界定起始位置：`?` 或 `&`；  
+2. 接下来固定匹配 `key=`：`?key=` 或 `&key=`；  
+3. 接下来匹配=号之后的 value：
+
+- 第2个分组匹配纯值部分：若干个非 `&` 字符；  
+- 第3个分组匹配界定结束位置：`#` 或 `&` 或 `$`；  
+
+返回 = group[2]
+
+**getCookie** 获取当前 cookie 中指定参数的cookie值。
+
+```
+RegExp("(?:^|;+|\\s+)" + key + "=([^;]*)");
+```
+
+non group = `(?:^|;+|\\s+)` = `?:^` or `;+` or `\\s+`，匹配界定 key 的起始位置
+
+`?:` 表示 non-capturing group，`^` 表示什么意思呢？
+
+- `;+`：1个或多个 `;`  
+- `\\s+`：1个或多个 whitespace  
+
+接下来固定匹配 `key=`  
+
+group1 = `[^;]*`，匹配=号之后的 value，若干个 非 `;` 字符（遇到 `;` 结束）。
+
+返回 = group[1]
+
 ### search
 
 字符串对象的 `search()` 方法，返回 **第一个** 满足条件的匹配结果在整个字符串中的位置。  
@@ -88,6 +144,32 @@ interface String {
 }
 ```
 
+#### demo
+
+```TypeScript
+export function removeURLParameter(url, parameter) {
+    // prefer to use l.search if you have a location/link object
+    let urlparts = url.split('?');
+    if (urlparts.length >= 2) {
+        let prefix = encodeURIComponent(parameter) + '=';
+        let pars = urlparts[1].split(/[&;]/g);
+
+        // reverse iteration as may be destructive
+        for (let i = pars.length; i-- > 0;) {
+            // idiom for string.startsWith
+            if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                pars.splice(i, 1);
+            }
+        }
+
+        url = urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
+        return url;
+    } else {
+        return url;
+    }
+}
+```
+
 ### replace
 
 字符串对象的 `replace()` 方法可以替换匹配的值。它接受两个参数，第一个是正则表达式，表示搜索模式，第二个是替换的内容。
@@ -134,6 +216,21 @@ str.replace(/^\s+|\s+$/g, '')
 - $n：匹配成功的第n组内容，n是从1开始的自然数。  
 - \$\$：指代美元符号 `$`。  
 
+#### demo
+
+```TypeScript
+const REGEX_URL_CHAR = new RegExp('(' + /[-:@a-zA-Z0-9_.,~%+/\\?=&#!;()[\]$]/.source + ')');
+const REGEX_URL_PROTO = /\b(?:(?:https?|s?ftp|ftps|file|nfs):\/\/|mailto:|tel:|www\.)/;
+const REGEX_URL = new RegExp(REGEX_URL_PROTO.source + REGEX_URL_CHAR.source + '+', 'ig');
+
+export function detectURL(str = '') {
+    return str.replace(REGEX_URL, (url) => {
+        const href = url.indexOf(':') > -1 ? url : `//${url}`;
+        return `<a href="javascript:void(0);" data-href=${href}>${url}</a>`;
+    });
+}
+```
+
 ## RegExp
 
 `RegExp.prototype.lastIndex`：返回一个整数，表示`下一次开始搜索的位置`。该属性可读写，但是只在进行连续搜索时有意义。
@@ -153,6 +250,14 @@ interface RegExp {
     test(string: string): boolean;
 
 }
+```
+
+#### demo
+
+```
+let isIOS = /(iphone|ipad|ipod)/i.test(window.navigator.userAgent);
+let isiPhoneX = /iphone x/gi.test(window.navigator.userAgent);
+const isQBSideBar = /(PCQQBrowser)/i.test(window.navigator.userAgent) && /(qbsidebar)/i.test(window.navigator.userAgent);
 ```
 
 ### exec
@@ -253,6 +358,27 @@ undefined
 ```
 
 在上面代码中，只要 `exec` 方法不返回 null，就会一直循环下去，每次输出匹配的位置和匹配的文本。
+
+#### demo
+
+```TypeScript
+let filename = 'word2019.xlsx'; // 'excel2019.xlsx';
+let filetype = null;
+let filetypes = { doc: 'doc', xls: 'sheet' };
+let refileext = /\.([^\.]{3})[^\.]*$/.exec((filename + "").toLowerCase());
+let fileext = refileext[1];
+if (fileext) {
+    filetype = filetypes[fileext]
+}
+```
+
+`\.([^\.]{3})[^\.]*$`:
+
+1. 以 `.` 开头；  
+2. `([^\.]{3})`：三个非 `.` 字符；  
+3. 紧接着以0或多个非 `.` 字符结尾。  
+
+**测试**：.doc、.docx 后缀类型的文件名返回 doc；.xls、xlsx 后缀类型的文件名返回 sheet。
 
 ## demo
 
