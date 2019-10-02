@@ -27,7 +27,7 @@ npm config set registry="https://registry.npm.taobao.org/"
 
 ## [cnpm](http://npm.taobao.org/)
 
-In China, you can install whistle using npm mirror of taobao to speed up installing progress and avoid failure：
+In China, you can install whistle npm mirror of taobao to speed up installing progress and avoid failure：
 
 > [tnpm /cnpm 安装报错](https://segmentfault.com/q/1010000009008062)  
 > [nodejs linux 环境设置 tnpm 安装](https://blog.csdn.net/lilei_ndsc/article/details/52190010)  
@@ -115,3 +115,22 @@ Help: http://cnpmjs.org/help/cnpm
 
 配置：`/Users/faner/.cnpmrc`  
 
+## tnpm registry
+
+也可考虑腾讯云搭建的 [tnpm](https://mirrors.cloud.tencent.com/help/npm.html)：
+
+```
+npm config set registry http://mirrors.cloud.tencent.com/npm/
+```
+
+```
+╭─faner at THOMASFAN-MB1 in ~
+╰─○ npm config get registry
+https://registry.npmjs.org/
+╭─faner at THOMASFAN-MB1 in ~
+╰─○ npm config set registry http://mirrors.cloud.tencent.com/npm/
+
+╭─faner at THOMASFAN-MB1 in ~
+╰─○ npm config get registry
+http://mirrors.cloud.tencent.com/npm/
+```
