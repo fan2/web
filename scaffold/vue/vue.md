@@ -11,7 +11,7 @@ Vue (读音类似于 view) 是一套用于构建用户界面的渐进式框架�
 
 [Vuex 2.0 源码分析](http://www.jqhtml.com/9032.html)
 
-### vue-cli
+### [vue-cli](https://cloud.tencent.com/search/vue/1_1)
 
 [vue-cli - npm](https://www.npmjs.com/package/vue-cli)  
 
