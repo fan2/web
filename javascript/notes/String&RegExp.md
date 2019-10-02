@@ -80,7 +80,7 @@ RegExp("(?:^|;+|\\s+)" + key + "=([^;]*)");
 
 non group = `(?:^|;+|\\s+)` = `?:^` or `;+` or `\\s+`，匹配界定 key 的起始位置
 
-`?:` 表示 non-capturing group，`^` 表示什么意思呢？
+`?:^` 表示 non-capturing group，[匹配一行开头](https://blog.csdn.net/yiheliangmaoqian/article/details/79466484)？
 
 - `;+`：1个或多个 `;`  
 - `\\s+`：1个或多个 whitespace  
