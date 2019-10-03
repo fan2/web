@@ -80,8 +80,9 @@ RegExp("(?:^|;+|\\s+)" + key + "=([^;]*)");
 
 non group = `(?:^|;+|\\s+)` = `?:^` or `;+` or `\\s+`，匹配界定 key 的起始位置
 
-`?:^` 表示 non-capturing group，[匹配一行开头](https://blog.csdn.net/yiheliangmaoqian/article/details/79466484)？
+`?:` 表示小括号为非捕获分组（non-capturing group）
 
+- `^`：[匹配一行开头](https://blog.csdn.net/yiheliangmaoqian/article/details/79466484) 为空，注意需要打开 `/m` 开关；  
 - `;+`：1个或多个 `;`  
 - `\\s+`：1个或多个 whitespace  
 
