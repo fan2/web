@@ -36,7 +36,7 @@ $ nvm ls-remote v11 --lts
 
 1. `nvm install 10.15.3`；  
 2. `nvm install-latest-npm`；  
-3. `nvm reinstall-packages-from=v10.14.1`；  
+3. `nvm reinstall-packages v10.14.1`；  
 
 ## 安装最新的 node 10.15.3
 
@@ -76,7 +76,7 @@ $ npm -v
 ## 重新安装 npm packages
 
 ```
-$ nvm reinstall-packages-from=v10.14.1
+$ nvm reinstall-packages v10.14.1
 Reinstalling global packages from v10.14.1...
 npm WARN deprecated socks@1.1.10: If using 2.x branch, please upgrade to at least 2.1.6 to avoid a serious bug with socket data flow and an import issue introduced in 2.1.0
 /Users/faner/.nvm/versions/node/v10.15.3/bin/cnpm -> /Users/faner/.nvm/versions/node/v10.15.3/lib/node_modules/cnpm/bin/cnpm
