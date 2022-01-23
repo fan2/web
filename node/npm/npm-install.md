@@ -45,15 +45,15 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 同时安装 tslint 和 typescript：`[c]npm i -g tslint typescript`；  
 
 ```
-╭─faner at THOMASFAN-MB1 in ~
+╭─faner at FAN-MB1 in ~
 ╰─○ npm list -g --depth=0
 /Users/faner/.nvm/versions/node/v11.15.0/lib
 └── npm@6.7.0
 
-╭─faner at THOMASFAN-MB1 in ~
+╭─faner at FAN-MB1 in ~
 ╰─○ npm install -g whistle
 
-╭─faner at THOMASFAN-MB1 in ~
+╭─faner at FAN-MB1 in ~
 ╰─○ npm list -g --depth=0
 /Users/faner/.nvm/versions/node/v11.15.0/lib
 ├── npm@6.7.0

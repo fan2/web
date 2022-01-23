@@ -36,7 +36,7 @@ prefix = ${HOME}/.npm-packages
 `npm config set proxy http://proxy.company.com:8080` 设置代理会写入 `~/.npmrc`：
 
 ```shell
-ifan@THOMASFAN-MC1:~|⇒  cat .npmrc
+ifan@FAN-MC1:~|⇒  cat .npmrc
 proxy=http://proxy.company.com:8080
 ```
 

@@ -174,30 +174,3 @@ faner@MBP-FAN:~|⇒  npm -v
 
 执行 `npm -h` 可查看命令帮助。  
 执行 `npm help install` 可查看子命令 install 的帮助。  
-
-### cnpm
-
-用 npm 安装淘宝 [cnpm](https://npm.taobao.org/)：
-
-```shell
-npm install cnpm -g --registry=https://registry.npm.taobao.org
-```
-
-执行 `cnpm -v` 查看版本信息：
-
-```shell
-faner@MBP-FAN:~|⇒  cnpm -v
-cnpm@6.0.0 (/usr/local/lib/node_modules/cnpm/lib/parse_argv.js)
-npm@6.2.0 (/usr/local/lib/node_modules/cnpm/node_modules/_npm@6.2.0@npm/lib/npm.js)
-node@10.9.0 (/usr/local/Cellar/node/10.9.0/bin/node)
-npminstall@3.10.0 (/usr/local/lib/node_modules/cnpm/node_modules/_npminstall@3.10.0@npminstall/lib/index.js)
-prefix=/usr/local
-darwin x64 17.7.0
-registry=https://registry.npm.taobao.org
-```
-
-安装 whistle：
-
-```shell
-[c]npm install -g whistle
-```
