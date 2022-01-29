@@ -1,4 +1,6 @@
 
+[Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/)
+
 无论是 windows 还是 macOS，都建议安装 **nvm**，通过 nvm 来安装切换管理配置 node 版本。
 
 [NVM](https://github.com/creationix/nvm): Node Version Manager
